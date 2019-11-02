@@ -1,0 +1,47 @@
+{% extends "mods/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
+    </div>
+
+        <h1 class="mb-3">Your Mods</h1>
+        {% for post in posts %}
+        <div class="card card-blog" style="width: 22rem;">
+            <div class="card-image">
+                <a href="{% url 'post-detail' post.id %}"> <img class="img" src="{{ post.thumbnail.url }}"> </a>
+                <div class="ripple-cont"></div>
+            </div>
+            <div class="table">
+                <h6 class="category text-success">{{ post.get_category_display }}</h6>
+                <h5 class="card-caption">
+            <a href="{% url 'post-detail' post.id %}">{{ post.title|truncatechars:100 }}<h6><span class="badge badge-dark">{{ post.get_download_1_version_display }}</span></h6></a>
+              </h5>
+                <p class="card-description">{{ post.description|truncatechars:80|safe }}</p>
+                <div class="ftr">
+                    <div class="author">
+                        <a href="{% url 'user-posts' post.author.username %}"> <img src="{{ post.author.profile.image.url }}" alt="..." class="avatar img-raised"> <span>{{ post.author }}</span> </a>
+                    </div>
+                    <div class="stats">{{ post.date_posted|date:"F d, Y" }} </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+    {% endblock content %}

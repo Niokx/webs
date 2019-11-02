@@ -1,0 +1,72 @@
+{% extends "mods/base.html" %}
+{% load hitcount_tags %}
+{% load crispy_forms_tags %}
+{% load my_tags %}
+
+{% block content %}
+          <h1>FAQ</h1>
+          <p class="lead">That's our FAQ to answer your questions about our site!</p>
+          <hr class="my-4">
+          <h4>General</h4>
+          <p>
+            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse0" aria-expanded="false" aria-controls="collapse0">
+              What is "minecraft-mods.eu"?
+            </button>
+          </p>
+          <div class="collapse" id="collapse0">
+            <div class="card card-body">
+              <a href="minecraft-mods.eu">Minecraft-Mods.eu</a> is a community website for sharing mods for Minecraft.
+              The website was launched in November of 2019 and we want to create a awesome
+              community website for Mods! We are an independent website run by an administrator,
+              a developer and an amazing volunteer team of moderators who help keep this community safe, clean and fun.
+            </div>
+          </div>
+
+          <p>
+            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+              Are you affiliated with Mojang the developers of Minecraft?
+            </button>
+          </p>
+          <div class="collapse" id="collapse1">
+            <div class="card card-body">
+              No, we are not affiliated with Mojang. We're an unofficial fan website that supports the creative community of the amazing game, <a href="https://www.minecraft.net/">Minecraft</a>. If you need to contact Mojang support, click
+              <a href="https://help.mojang.com/">here</a>.
+            </div>
+          </div>
+
+          <p>
+            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+              Can I help to improve the site with my ideas?
+            </button>
+          </p>
+          <div class="collapse" id="collapse2">
+            <div class="card card-body">
+              Yes! Just join our Discord and write us about your ideas to improve our
+              community website! Join: <a href="https://discord.gg/x7rv9H">https://discord.gg/x7rv9H</a>
+            </div>
+          </div>
+          <br></br>
+          <h4>Mod Submissions</h4>
+          <p>
+            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              What is the Greenlight System?
+            </button>
+          </p>
+          <div class="collapse" id="collapse3">
+            <div class="card card-body">
+              The Greenlight system helps keep the community safe by reviewing new content prior to releasing it to the public.
+              For this reason, it's even more important to follow the content guidelines & general site etiquette to speed up the Greenlight process.
+            </div>
+          </div>
+
+          <p>
+            <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              How to report content?
+            </button>
+          </p>
+          <div class="collapse" id="collapse4">
+            <div class="card card-body">
+              Just write a mail to <a href="mailto:seltak.studio@gmail.com">seltak.studio@gmail.com</a>  and we will answer as quick as possible!
+            </div>
+          </div>
+{% endblock content %}

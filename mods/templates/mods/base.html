@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'mods/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'mods/cards-style.css' %}">
+
+        {% if title %}
+            <title>Minecraft Mods | {{ title }}</title>
+        {% else %}
+            <title>Minecraft Mods</title>
+            {% endif %}
+    </head>
+    <body>
+        <header class="site-header">
+          <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+              <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Mods for Minecraft</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarToggle">
+                <div class="navbar-nav mr-auto">
+                  <a class="nav-item nav-link" href="{% url 'blog-home' %}">Mods</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-rewards' %}">Rewards</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-faq' %}">FAQ</a>
+                </div>
+                <!-- Navbar Right Side -->
+                <div class="navbar-nav">
+                  {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'post-create' %}">Create Mod</a>
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                  {% else %}
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+
+        <main role="main" class="container">
+          <div class="row">
+            <div class="col-md-8">
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+              {% block content %}{% endblock %}
+            </div>
+            <div class="col-md-4">
+              <div class="content-section">
+                <h3>Mod News</h3>
+                <p class='text-muted'>Check out the popular Mods!
+                  <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Popular Mods</li>
+                    <div class="row no-gutters bg-light position-relative">
+                      <div class="col-md-6 mb-md-0 p-md-4">
+                        <img src="https://i.ytimg.com/vi/5Gt2wZt_h8k/maxresdefault.jpg" class="w-100" alt="...">
+                      </div>
+                      <div class="col-md-6 position-static p-4 pl-md-0">
+                        <h5 class="mt-0">Dungeon Mod</h5>
+                        <p>by nico</p>
+                        <a href="http://127.0.0.1:8000/post/47/" class="stretched-link"></a>
+                      </div>
+                    </div>
+                    <div class="row no-gutters bg-light position-relative">
+                      <div class="col-md-6 mb-md-0 p-md-4">
+                        <img src="http://www.9minecraft.net/wp-content/uploads/2013/09/Gun-Customization-Mod.jpg" class="w-100" alt="...">
+                      </div>
+                      <div class="col-md-6 position-static p-4 pl-md-0">
+                        <h5 class="mt-0">Guunn Mod</h5>
+                        <p>by Seltak</p>
+                        <a href="http://127.0.0.1:8000/post/45/" class="stretched-link"></a>
+                      </div>
+                    </div>
+                    <div class="row no-gutters bg-light position-relative">
+                      <div class="col-md-6 mb-md-0 p-md-4">
+                        <img src="https://www.pcgamesn.com/wp-content/uploads/2018/06/Minecraft-mods-BuildCraft-2.jpg" class="w-100" alt="...">
+                      </div>
+                      <div class="col-md-6 position-static p-4 pl-md-0">
+                        <h5 class="mt-0">Liead Mod</h5>
+                        <p>by Seltak</p>
+                        <a href="http://127.0.0.1:8000/post/47/" class="stretched-link"></a>
+                      </div>
+                    </div>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <div class="row no-gutters bg-light position-relative">
+                      <div class="col-md-6 mb-md-0 p-md-4">
+                        <img src="https://banner2.cleanpng.com/20180427/wvq/kisspng-discord-logo-computer-icons-reddit-zongzi-14-0-1-5ae3de249d00b2.2332496115248829806431.jpg" class="w-100" alt="...">
+                      </div>
+                      <div class="col-md-6 position-static p-4 pl-md-0">
+                        <h5 class="mt-0">Join Discord</h5>
+                      <a class="break-word" href="https://discord.gg/x7rv9H">https://discord.gg/x7rv9H</a>
+                      <p class='text-muted'>Send us your ideas to create a awesome Mod Community!</p>
+                      </div>
+                    </div>
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer class="footer mt-auto py-3 bg-dark">
+          <div class="container">
+            <div class="row centered">
+              <a class="nav-item nav-link text-light" href="{% url 'blog-home' %}">Privacy Policy</a>
+              <a class="nav-item nav-link text-light" href="{% url 'blog-home' %}">Terms Of Service</a>
+              <span class="text-light">Copyright © 2019. All rights reserved.</span>
+            </div>
+          </div>
+          </div>
+        </footer>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
